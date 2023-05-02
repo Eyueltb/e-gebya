@@ -1,9 +1,10 @@
 package com.eshop.backend.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.math.BigDecimal;
 import java.util.*;
 import java.time.LocalDate;
 
@@ -13,14 +14,38 @@ import java.time.LocalDate;
 public class Car {
     @Id
     private Long id;
+    @Column(nullable = false)
     private String model;
+
     private String description;
-    private int productionYear;
+
+    @Column(nullable = false)
+    private Integer productionYear;
+
+    @Column(nullable = false)
+    private String color;
+
+    @Column(nullable = false)
+    private Integer mileage;
+
+    @Column(nullable = false)
+    private BigDecimal price;
+
+
     private String passengerCapacity;
     private LocalDate dateImported;
     //picture,
 
-    public Car(String model,String description,int productionYear,String passengerCapacity,LocalDate dateImported){
+    @ManyToOne
+    private Location location;
+
+    @ManyToOne
+    private User seller;
+
+    @OneToMany(mappedBy = "car", cascade = CascadeType.ALL)
+    private List<Image> images;
+
+    public Car(String model,String description, Integer productionYear,String passengerCapacity,LocalDate dateImported){
         this.id= UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE;
         this.model=model;
         this.description=description;

@@ -21,7 +21,7 @@ public class EshopApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Car car = new Car("model-1", "Car description", 2022, "four", LocalDate.of(2023, 10, 20 ));
-        carRepository.save(car);
+        //Car car = new Car("model-1", "Car description", 2022, "four", LocalDate.of(2023, 10, 20 ));
+       // carRepository.save(car);
     }
 }
