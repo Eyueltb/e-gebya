@@ -26,6 +26,6 @@ public class Location {
     private String zipCode;
 
     @OneToMany(mappedBy = "location")
-    private List<Car> cars;
+    private List<Product> products;
 
 }

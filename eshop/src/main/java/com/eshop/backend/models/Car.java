@@ -25,14 +25,13 @@ public class Car {
     @Column(nullable = false)
     private String color;
 
-    @Column(nullable = false)
     private Integer mileage;
 
     @Column(nullable = false)
     private BigDecimal price;
 
-
     private String passengerCapacity;
+
     private LocalDate dateImported;
     //picture,
 

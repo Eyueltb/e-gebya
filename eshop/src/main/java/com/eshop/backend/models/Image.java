@@ -13,6 +13,6 @@ public class Image {
     private String url;
 
     @ManyToOne
-    private Car car;
+    private Product product;
 }
 

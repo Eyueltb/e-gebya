@@ -1,5 +1,6 @@
 package com.eshop.backend.controllers;
 
+import com.eshop.backend.dto.ProductDTO;
 import com.eshop.backend.models.Category;
 import com.eshop.backend.models.Product;
 import com.eshop.backend.services.ProductService;
@@ -7,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/products")
@@ -18,8 +20,8 @@ public class ProductController {
     }
 
     @GetMapping
-    public List<Product> getAllProducts() {
-        return productService.getAllProducts();
+    public List<ProductDTO> getAllProducts() {
+        return productService.getAllProducts().map(this::toProductDTO).collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
@@ -46,5 +48,13 @@ public class ProductController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteProduct(@PathVariable Long id) {
         productService.deleteProduct(id);
+    }
+    public ProductDTO toProductDTO(Product product) {
+        return new ProductDTO(
+                product.getName(),
+                product.getDescription(),
+                product.getPrice(),
+                product.getCategory()
+        );
     }
 }

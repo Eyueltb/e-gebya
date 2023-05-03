@@ -20,7 +20,7 @@ public class Order {
     private User seller;
 
     @ManyToOne
-    private Car car;
+    private Product product;
 
     @Column(nullable = false)
     private BigDecimal price;

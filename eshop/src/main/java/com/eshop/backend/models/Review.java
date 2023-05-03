@@ -19,7 +19,7 @@ public class Review {
     private User reviewer;
 
     @ManyToOne
-    private Car car;
+    private Product product;
 
     @Column(nullable = false)
     private Integer rating;

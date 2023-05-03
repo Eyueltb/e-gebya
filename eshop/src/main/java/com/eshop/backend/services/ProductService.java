@@ -3,9 +3,11 @@ package com.eshop.backend.services;
 import com.eshop.backend.models.Category;
 import com.eshop.backend.models.Product;
 import com.eshop.backend.repository.ProductRepository;
+import com.sun.jdi.event.StepEvent;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 @Service
 public class ProductService {
@@ -15,8 +17,8 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public List<Product> getAllProducts() {
-        return productRepository.findAll();
+    public Stream<Product> getAllProducts() {
+        return productRepository.findAll().stream();
     }
 
     public Product getProductById(Long id) {
