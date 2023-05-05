@@ -32,22 +32,22 @@ public class ProductService {
         return productRepository.findByCategory(category).stream().map(this::toProductDTO).collect(Collectors.toList());
     }
 
-    public ProductDTO createProduct(ProductDTO productDTO) {
+    public String createProduct(ProductDTO productDTO) {
         Product product = new Product();
-        product.setId(UUID.randomUUID().getMostSignificantBits());
-        product.setName(productDTO.getName());
-        product.setDescription(productDTO.getDescription());
-        product.setPrice(productDTO.getPrice());
+        product.setId(UUID.randomUUID().getMostSignificantBits() & Long.MAX_VALUE);
+        product.setName(productDTO.name());
+        product.setDescription(productDTO.description());
+        product.setPrice(productDTO.price());
         product.setCategory(product.getCategory());
-        return toProductDTO(productRepository.save(product));
+        return productRepository.save(product).getId().toString();
     }
 
     public ProductDTO updateProduct(Long id, ProductDTO productDTO) {
         Product existingProduct = getExistingProduct(id);
-        existingProduct.setName(productDTO.getName());
-        existingProduct.setDescription(productDTO.getDescription());
-        existingProduct.setPrice(productDTO.getPrice());
-        existingProduct.setCategory(productDTO.getCategory());
+        existingProduct.setName(productDTO.name());
+        existingProduct.setDescription(productDTO.description());
+        existingProduct.setPrice(productDTO.price());
+        existingProduct.setCategory(productDTO.category());
         return toProductDTO(productRepository.save(existingProduct));
     }
 

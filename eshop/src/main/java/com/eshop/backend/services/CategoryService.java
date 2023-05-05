@@ -28,15 +28,15 @@ public class CategoryService {
     public CategoryDTO createCategory(CategoryDTO categoryDTO) {
             Category category = new Category();
             category.setId(UUID.randomUUID().getMostSignificantBits());
-            category.setName(categoryDTO.getName());
-            category.setProducts(categoryDTO.getProducts());
+            category.setName(categoryDTO.name());
+            category.setProducts(categoryDTO.products());
         return toCategoryDTO(categoryRepository.save(category));
     }
 
     public CategoryDTO updateCategory(Long id, CategoryDTO categoryDTO) {
         Category existingCategory = getExistingCategory(id);
-        existingCategory.setName(categoryDTO.getName());
-        existingCategory.setProducts(categoryDTO.getProducts());
+        existingCategory.setName(categoryDTO.name());
+        existingCategory.setProducts(categoryDTO.products());
         return toCategoryDTO(categoryRepository.save(existingCategory));
     }
 

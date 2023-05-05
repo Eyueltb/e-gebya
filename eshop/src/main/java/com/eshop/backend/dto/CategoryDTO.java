@@ -4,11 +4,10 @@ package com.eshop.backend.dto;
 import com.eshop.backend.models.Product;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
+
 
 import java.util.Set;
 
-@Data
 public record CategoryDTO (String name, Set<Product> products) {
     @JsonCreator
     public CategoryDTO(
@@ -18,5 +17,14 @@ public record CategoryDTO (String name, Set<Product> products) {
         this.products = products;
     }
 
+    @Override
+    public String name() {
+        return name;
+    }
+
+    @Override
+    public Set<Product> products() {
+        return products;
+    }
 }
 

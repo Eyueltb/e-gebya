@@ -32,7 +32,7 @@ public class ProductController {
     }
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ProductDTO createProduct(@RequestBody ProductDTO productDTO) {
+    public String createProduct(@RequestBody ProductDTO productDTO) {
         return productService.createProduct(productDTO);
     }
     @PutMapping("/{id}")
