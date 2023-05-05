@@ -7,6 +7,7 @@ import jakarta.persistence.OneToMany;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -20,7 +21,7 @@ public class Category {
     private String name;
 
     @OneToMany(mappedBy = "category")
-    private Set<Product> products;
+    private Set<Product> products = new HashSet<>();
 
     public Category(Long categoryId) {
         this.id = categoryId;

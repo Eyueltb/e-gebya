@@ -3,11 +3,10 @@ package com.eshop.backend.models;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 import lombok.Data;
+
 import lombok.NoArgsConstructor;
 
-import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -24,11 +23,5 @@ public class User {
 
     @Column(nullable = false)
     private String password;
-
-    @OneToMany(mappedBy = "seller")
-    private List<Car> cars;
-
-    @OneToMany(mappedBy = "buyer")
-    private List<Order> orders;
 
 }
